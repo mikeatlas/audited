@@ -2,11 +2,11 @@
 
 Gem::Specification.new do |gem|
   gem.name    = 'audited'
-  gem.version = '3.0.0'
+  gem.version = '3.0.1'
 
   gem.authors     = ['Brandon Keepers', 'Kenneth Kalmer', 'Daniel Morrison', 'Brian Ryckbost', 'Steve Richert', 'Ryan Glover']
   gem.email       = 'info@collectiveidea.com'
-  gem.description = 'Log all changes to your models'
+  gem.description = 'Log all changes to your ActiveRecord models. Modified by @mikeatlas to run all audit entry writes as delayed_jobs.'
   gem.summary     = gem.description
   gem.homepage    = 'https://github.com/collectiveidea/audited'
   gem.license     = 'MIT'

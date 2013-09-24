@@ -211,9 +211,18 @@ module Audited
       end
 
       def write_audit(attrs)
+        self.delay(:priority => 50, :queue => 'audit')
+          .write_audit_internal(attrs)
+      end
+
+      def write_audit_internal(attrs)
         attrs[:associated] = self.send(audit_associated_with) unless audit_associated_with.nil?
         self.audit_comment = nil
-        run_callbacks(:audit)  { self.audits.create(attrs) } if auditing_enabled
+        if auditing_enabled
+          run_callbacks(:audit) do 
+            self.audits.create(attrs) 
+          end
+        end
       end
 
       def require_comment
